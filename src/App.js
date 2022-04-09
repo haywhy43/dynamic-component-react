@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import DynamicComponent from "./components/DynamicComponent";
+import { useState } from "react";
 
 function App() {
+  const [activeComponent, setActiveComponent] = useState("SayHello");
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <DynamicComponent is={activeComponent} name="Sholademi Ayomikun" />
+
+        <button
+          onClick={() =>
+            // Note that `SayHello` and `SayGoodbye` have been defined in the components folder
+            setActiveComponent(
+              activeComponent === "SayHello" ? "SayGoodbye" : "SayHello"
+            )
+          }
         >
-          Learn React
-        </a>
+          Toggle Component
+        </button>
       </header>
     </div>
   );
